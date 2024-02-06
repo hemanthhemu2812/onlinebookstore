@@ -16,7 +16,7 @@ pipeline {
         stage("deploy tomcat"){
            steps{ 
             sshagent(['book_store']) {
-                sh "ssh -o StrictHostKeyChecking=no target/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@13.232.141.203 /opt/tomcat/webapps"
+                sh "ssh -o StrictHostKeyChecking=no target/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@13.232.141.203:/opt/tomcat/webapps"
 }
            }
         }
