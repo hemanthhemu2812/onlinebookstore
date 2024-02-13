@@ -23,6 +23,14 @@ pipeline {
             sh "docker build -t hemanth2812/image:${BUILD_NUMBER} ."
            } 
         }
+        stage("docker push"){
+           steps{ 
+           withCredentials([string(credentialsId: 'docker_cred', variable: 'dockerpass')]) {
+           sh  "docker login -u hemanth2812 -p ${dockerpass}"
+                }
+           sh "docker push hemanth2812/image:${BUILD_NUMBER}"               
+            } 
+        }
     }
 } 
 
