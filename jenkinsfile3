@@ -31,6 +31,11 @@ pipeline {
            sh "docker push hemanth2812/image:${BUILD_NUMBER}"               
             } 
         }
+        stage("docker image run"){
+           steps{ 
+            sh "docker run -itd --name containername -p 8081:8080 hemanth2812/image:${BUILD_NUMBER} "
+           } 
+        }
     }
 } 
 
