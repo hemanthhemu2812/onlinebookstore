@@ -11,13 +11,17 @@ pipeline {
             sh "mvn test"
            }
        }
-        stage("deploy tomcat"){
+        // stage("deploy tomcat"){
+        //    steps{ 
+        //     sshagent(['book_store']) {
+        //         sh "scp -o StrictHostKeyChecking=no target/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@13.232.141.203:/opt/tomcat/webapps"
+        //         }
+        //     }
+        // }
+        stage("docker build"){
            steps{ 
-            sshagent(['book_store']) {
-                
-                sh "scp -o StrictHostKeyChecking=no target/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@13.232.141.203:/opt/tomcat/webapps"
-            }
-        }
+            sh "docker build -t hemanth2812/image:${BUILD_NUMBER} ."
+           } 
         }
     }
 } 
